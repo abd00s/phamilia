@@ -10,9 +10,9 @@ Union.destroy_all
 
 bassam = Person.create(first_name: 'Bassam',last_name: 'Pharaon')
 dina = Person.create(first_name: 'Dina',last_name: 'Tash')
-nisreen = Person.create(first_name: 'Nisreen',last_name: 'Pharaon')
+nisreen = Person.create(first_name: 'Nisreen',last_name: 'Pharaon', father: bassam, mother: dina)
 zeid = Person.create(first_name: 'Zeid',last_name: 'Shubailat')
-gaith = Person.create(first_name: 'Gaith',last_name: 'Shubailat')
+gaith = Person.create(first_name: 'Gaith',last_name: 'Shubailat', father: zeid, mother: nisreen)
 
 union1 = Union.create(date: Date.new(1969), location: 'Amman, Jordan', husband: bassam, wife: dina)
 union2 = Union.create(date: Date.parse('2006-05-19'), location: 'Amman, Jordan', husband: zeid, wife: nisreen)
