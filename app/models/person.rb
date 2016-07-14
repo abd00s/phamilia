@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   end
 
   def children
-    parent_in.collect {|union| union.children}
+    parent_in.collect{|union| union.children}.flatten
   end
 
 end
