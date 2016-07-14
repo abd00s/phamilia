@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+people = Person.create([{first_name: 'Bassam',last_name: 'Pharaon'},
+                        {first_name: 'Dina',last_name: 'Tash'},
+                        {first_name: 'Nisreen',last_name: 'Pharaon'},
+                        {first_name: 'Zeid',last_name: 'Shubailat'},
+                        {first_name: 'Gaith',last_name: 'Shubailat'}])
+unions = Union.create([{date: Date.new('1969'), location: 'Amman, Jordan'},
+                       {date: Date.parse('2006-05-19'), location: 'Amman, Jordan'}])
