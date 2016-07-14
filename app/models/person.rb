@@ -14,5 +14,8 @@ class Person < ActiveRecord::Base
     Union.where("#{parent_id}": self.id)
   end
 
-  # scope :children, -> { Union.find_by() }
+  def children
+    parent_in.collect {|union| union.children}
+  end
+
 end
