@@ -32,9 +32,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
+gem 'therubyracer', '~> 0.12.2'
+gem 'less-rails', '~> 2.7', '>= 2.7.1'
+gem 'devise', '~> 4.1'
+gem 'rails_admin', '~> 0.8.1'
+gem 'cancancan', '~> 1.13', '>= 1.13.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'awesome_print'
+  gem 'quiet_assets', '~> 1.1'
 end
 
 group :development do
