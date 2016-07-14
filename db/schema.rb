@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714174249) do
+ActiveRecord::Schema.define(version: 20160714175633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20160714174249) do
     t.boolean  "divorced?",  default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "father_id"
-    t.integer  "mother_id"
+    t.integer  "husband_id"
+    t.integer  "wife_id"
   end
 
 end
