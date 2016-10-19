@@ -4,6 +4,8 @@ class Union < ActiveRecord::Base
   belongs_to :wife, :class_name => Person, :foreign_key => 'wife_id'
 
   def children
-    self.people - [self.husband, self.wife]
+    self.people.reject do |person|
+      [self.husband_id, self.wife_id].include?(person.id)
+    end
   end
 end
