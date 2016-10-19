@@ -11,11 +11,12 @@ Union.destroy_all
 bassam = Person.create(first_name: 'Bassam',last_name: 'Pharaon',gender: 'M')
 dina = Person.create(first_name: 'Dina',last_name: 'Tash',gender: 'F')
 nisreen = Person.create(first_name: 'Nisreen',last_name: 'Pharaon',gender: 'F', father: bassam, mother: dina)
+yasmin = Person.create(first_name: 'Yasmin',last_name: 'Pharaon',gender: 'F', father: bassam, mother: dina)
 zeid = Person.create(first_name: 'Zeid',last_name: 'Shubailat',gender: 'M')
 gaith = Person.create(first_name: 'Gaith',last_name: 'Shubailat',gender: 'M', father: zeid, mother: nisreen)
 
 union1 = Union.create(date: Date.new(1969), location: 'Amman, Jordan', husband: bassam, wife: dina)
 union2 = Union.create(date: Date.parse('2006-05-19'), location: 'Amman, Jordan', husband: zeid, wife: nisreen)
 
-union1.people << [bassam, dina, nisreen]
+union1.people << [bassam, dina, nisreen, yasmin]
 union2.people << [nisreen, zeid, gaith]
