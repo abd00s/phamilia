@@ -6,6 +6,7 @@ RSpec.describe Person, type: :model do
   let(:gaith) { Person.find_by(first_name: "Gaith") } # Has no children, no siblings
   let(:bassam) { Person.find_by(first_name: "Bassam") }
   let(:yasmin) { Person.find_by(first_name: "Yasmin") }
+  let(:zeid) { Person.find_by(first_name: "Zeid") }
 
   describe "association #father" do
     context "person has a father in the network" do
@@ -135,6 +136,48 @@ RSpec.describe Person, type: :model do
       it "returns an empty array" do
         expect(gaith.siblings).to_not be_present
         expect(gaith.siblings).to eq([])
+      end
+    end
+  end
+
+  describe "#connections [Father, Mother, Siblings, Children, Spouse]" do
+    it "returned array does not include higher order relationships" do
+      expect(gaith.connections).to_not include(bassam,dina)
+    end
+
+    context "person with all of types of first order connections defined" do
+      it "returns an array of all first order relationships" do
+        expect(nisreen.connections).to include(zeid,gaith,yasmin,bassam,dina)
+      end
+    end
+
+    context "person without siblings defined" do
+      it "returns an array of all first order relationships [Does not crash]" do
+        expect(gaith.connections).to include(zeid,nisreen)
+      end
+    end
+
+    context "person without spouse defined" do
+      it "returns an array of all first order relationships [Does not crash]" do
+        expect(yasmin.connections).to include(bassam,nisreen,dina)
+      end
+    end
+
+    context "person without children defined" do
+      it "returns an array of all first order relationships [Does not crash]" do
+        expect(yasmin.connections).to include(bassam,nisreen,dina)
+      end
+    end
+
+    context "person without mother defined" do
+      it "returns an array of all first order relationships [Does not crash]" do
+        expect(dina.connections).to include(bassam,nisreen,yasmin)
+      end
+    end
+
+    context "person without father defined" do
+      it "returns an array of all first order relationships [Does not crash]" do
+        expect(bassam.connections).to include(dina,nisreen,yasmin)
       end
     end
   end
