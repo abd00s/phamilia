@@ -39,6 +39,16 @@ class Person < ActiveRecord::Base
   end
 
   def siblings
-    child_in.children.reject{|child| child.id == self.id}
+    child_in.present? ? child_in.children.reject{|child| child.id == self.id} : []
+  end
+
+  def connections
+    connected_individuals = Array.new
+    connected_individuals << self.father if self.father.present?
+    connected_individuals << self.mother if self.mother.present?
+    connected_individuals << self.spouse if self.spouse.present?
+    self.children.each{|child| connected_individuals << child}
+    self.siblings.each{|sibling| connected_individuals << sibling}
+    return connected_individuals
   end
 end
