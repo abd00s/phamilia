@@ -55,4 +55,21 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+
+  describe "#children" do
+    context "person has children from one marriage" do
+      it "returns an array of person's children" do
+        expect(nisreen.children).to be_an(Array)
+        expect(nisreen.children).to all satisfy{|child| child.mother.id == nisreen.id}
+        expect(nisreen.children.count).to be(1)
+      end
+    end
+
+    context "person has no children" do
+      it "returns an empty array" do
+        expect(gaith.children).to_not be_present
+        expect(gaith.children).to eq([])
+      end
+    end
+  end
 end
