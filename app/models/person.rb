@@ -37,4 +37,8 @@ class Person < ActiveRecord::Base
   def child_in
     (unions - parent_in).first
   end
+
+  def siblings
+    child_in.children.reject{|child| child.id == self.id}
+  end
 end
