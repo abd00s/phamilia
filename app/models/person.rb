@@ -33,4 +33,8 @@ class Person < ActiveRecord::Base
       .first
       .send "#{spouse_title}"
   end
+
+  def child_in
+    (unions - parent_in).first
+  end
 end
