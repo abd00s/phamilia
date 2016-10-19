@@ -5,6 +5,7 @@ RSpec.describe Person, type: :model do
   let(:dina) { Person.find_by(first_name: "Dina") } # Has no parents
   let(:gaith) { Person.find_by(first_name: "Gaith") } # Has no children, no siblings
   let(:bassam) { Person.find_by(first_name: "Bassam") }
+  let(:yasmin) { Person.find_by(first_name: "Yasmin") }
 
   describe "association #father" do
     context "person has a father in the network" do
@@ -69,6 +70,34 @@ RSpec.describe Person, type: :model do
       it "returns an empty array" do
         expect(gaith.children).to_not be_present
         expect(gaith.children).to eq([])
+      end
+    end
+  end
+
+  describe "#spouse" do
+    context "person is a female in an active marriage (and no previous marriages)" do
+      it "returns person's husband" do
+        expect(dina.spouse).to eq(bassam)
+      end
+    end
+
+    context "person is a female with no husband in the network" do
+      it "returns nil" do
+        expect(yasmin.spouse).to_not be_present
+        expect(yasmin.spouse).to be_nil
+      end
+    end
+
+    context "person is a male in an active marriage (and no previous marriages)" do
+      it "returns person's wife" do
+        expect(bassam.spouse).to eq(dina)
+      end
+    end
+
+    context "person is a male with no husband in the network" do
+      it "returns nil" do
+        expect(gaith.spouse).to_not be_present
+        expect(gaith.spouse).to be_nil
       end
     end
   end
