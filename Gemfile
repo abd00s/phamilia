@@ -47,6 +47,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'quiet_assets', '~> 1.1'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
