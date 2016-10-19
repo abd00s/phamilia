@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714182415) do
+ActiveRecord::Schema.define(version: 20161019221946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20160714182415) do
 
   add_index "people_unions", ["person_id"], name: "index_people_unions_on_person_id", using: :btree
   add_index "people_unions", ["union_id"], name: "index_people_unions_on_union_id", using: :btree
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "root_id"
+    t.integer  "destination_id"
+    t.boolean  "first_order?"
+    t.text     "sequence",       default: [],              array: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "unions", force: :cascade do |t|
     t.date     "date"
