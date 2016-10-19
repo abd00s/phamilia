@@ -101,4 +101,21 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+
+  describe "#child_in" do
+    context "person's parents are registered in network'" do
+      it "returns the union in which person is a child (only biological)" do
+        expect(nisreen.child_in).to be_a(Union)
+        expect(nisreen.child_in.husband).to eq(bassam)
+        expect(nisreen.child_in.wife).to eq(dina)
+      end
+    end
+
+    context "person's parents aren't registered on network" do
+      it "returns nil" do
+        expect(bassam.child_in).to_not be_present
+        expect(bassam.child_in).to be_nil
+      end
+    end
+  end
 end
