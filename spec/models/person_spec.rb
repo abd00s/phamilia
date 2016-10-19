@@ -118,4 +118,24 @@ RSpec.describe Person, type: :model do
       end
     end
   end
+
+  describe "#siblings" do
+    context "person has siblings from same 2 parents" do
+      it "returns an array of the person's siblings" do
+        expect(nisreen.siblings).to be_an(Array)
+        expect(nisreen.siblings).to all satisfy{ |sibling|
+          sibling.father == nisreen.father &&
+          sibling.mother == nisreen.mother
+        }
+        expect(nisreen.siblings).to include(yasmin)
+      end
+    end
+
+    context "person has no siblings registered in network" do
+      it "returns an empty array" do
+        expect(gaith.siblings).to_not be_present
+        expect(gaith.siblings).to eq([])
+      end
+    end
+  end
 end
