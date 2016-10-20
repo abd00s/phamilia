@@ -9,25 +9,25 @@ module SetFirstOrderRelationships
 
   def assign_group(key, root)
     primitive_type = primitive_type_name(key)
-    root.connections[key].each do |destination|
-      unless relationship_exists?(root, destination)
-        create_primitive_relationship(root, destination, primitive_type)
+    root.connections[key].each do |target|
+      unless relationship_exists?(root, target)
+        create_primitive_relationship(root, target, primitive_type)
       end
     end
   end
 
-  def create_primitive_relationship(root, destination, primitive_type)
+  def create_primitive_relationship(root, target, primitive_type)
     Relationship.create!(
       root_id: root.id,
-      destination_id: destination.id,
+      target_id: target.id,
       primitive_type: primitive_type,
       first_order?: true
     )
   end
 
-  def relationship_exists?(root, destination)
-    Relationship.exists?(root_id: root.id, destination_id: destination.id) ||
-    Relationship.exists?(root_id: destination.id, destination_id: root.id)
+  def relationship_exists?(root, target)
+    Relationship.exists?(root_id: root.id, target_id: target.id) ||
+    Relationship.exists?(root_id: target.id, target_id: root.id)
   end
 
   def primitive_type_name(key)

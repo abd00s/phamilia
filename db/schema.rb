@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019225030) do
+ActiveRecord::Schema.define(version: 20161020164401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20161019225030) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "root_id"
-    t.integer  "destination_id"
+    t.integer  "target_id"
     t.boolean  "first_order?"
     t.text     "sequence",       default: [],              array: true
     t.datetime "created_at",                  null: false

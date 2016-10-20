@@ -12,10 +12,10 @@ module RelationshipBetween
   end
 
   def are_related?(person_1, person_2)
-    if Relationship.find_by(root_id: person_1.id, destination_id: person_2.id).present?
-      Relationship.find_by(root_id: person_1.id, destination_id: person_2.id)
-    elsif Relationship.find_by(root_id: person_2.id, destination_id: person_1.id).present?
-      Relationship.find_by(root_id: person_2.id, destination_id: person_1.id)
+    if Relationship.find_by(root_id: person_1.id, target_id: person_2.id).present?
+      Relationship.find_by(root_id: person_1.id, target_id: person_2.id)
+    elsif Relationship.find_by(root_id: person_2.id, target_id: person_1.id).present?
+      Relationship.find_by(root_id: person_2.id, target_id: person_1.id)
     else
       false
     end
