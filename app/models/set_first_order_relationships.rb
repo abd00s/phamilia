@@ -23,11 +23,21 @@ module SetFirstOrderRelationships
       primitive_type: primitive_type,
       first_order?: true
     )
+
+    if ["child-parent", "parent-child"].include?(primitive_type)
+      primitive_type = primitive_type == "parent-child" ? "child-parent" : "parent-child"
+    end
+
+    Relationship.create!(
+      root_id: target.id,
+      target_id: root.id,
+      primitive_type: primitive_type,
+      first_order?: true
+    )
   end
 
   def relationship_exists?(root, target)
-    Relationship.exists?(root_id: root.id, target_id: target.id) ||
-    Relationship.exists?(root_id: target.id, target_id: root.id)
+    Relationship.exists?(root_id: root.id, target_id: target.id)
   end
 
   def primitive_type_name(key)
