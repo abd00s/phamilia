@@ -2,16 +2,16 @@ module SetFirstOrderRelationships
   def set_first_order_relationships
     Person.all.each do |person|
       person.connections.each_key do |key|    # Keys [:parents, :spouse, :children, :siblings]
-        Relationship.assign_group(key, person)
+        assign_group(key, person)
       end
     end
   end
 
   def assign_group(key, root)
-    primitive_type = Relationship.primitive_type_name(key)
+    primitive_type = primitive_type_name(key)
     root.connections[key].each do |destination|
-      unless Relationship.relationship_exists?(root, destination)
-        Relationship.create_primitive_relationship(root, destination, primitive_type)
+      unless relationship_exists?(root, destination)
+        create_primitive_relationship(root, destination, primitive_type)
       end
     end
   end
