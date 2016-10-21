@@ -1,6 +1,7 @@
 class Relationship < ActiveRecord::Base
   extend SetFirstOrderRelationships
   extend RelationshipBetween
+  extend SetHigherOrderRelationships
 
   belongs_to :root, :class_name => "Person"
   belongs_to :target, :class_name => "Person"
