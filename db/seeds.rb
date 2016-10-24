@@ -11,7 +11,7 @@ Relationship.destroy_all
 
 afaf = Person.create(first_name: 'Afaf',last_name: 'Tabbaa',gender: 'F')
 ar = Person.create(first_name: 'AR',last_name: 'Pharaon',gender: 'M')
-bassam = Person.create(first_name: 'Bassam',last_name: 'Pharaon',gender: 'M')
+bassam = Person.create(first_name: 'Bassam',last_name: 'Pharaon',gender: 'M', father: ar, mother: afaf)
 dina = Person.create(first_name: 'Dina',last_name: 'Tash',gender: 'F')
 nisreen = Person.create(first_name: 'Nisreen',last_name: 'Pharaon',gender: 'F', father: bassam, mother: dina)
 yasmin = Person.create(first_name: 'Yasmin',last_name: 'Pharaon',gender: 'F', father: bassam, mother: dina)
