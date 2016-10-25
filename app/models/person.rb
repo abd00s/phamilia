@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
   include RelationshipTo
+  include RelationshipTo2
 
   has_and_belongs_to_many :unions
   belongs_to :father, :class_name => Person, :foreign_key => 'father_id'
