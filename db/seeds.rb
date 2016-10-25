@@ -9,7 +9,12 @@ Person.destroy_all
 Union.destroy_all
 Relationship.destroy_all
 
-afaf = Person.create(first_name: 'Afaf',last_name: 'Tabbaa',gender: 'F')
+zahra = Person.create(first_name: 'Zahra',last_name: 'Tabbaa',gender: 'M')
+hashem = Person.create(first_name: 'Hashem',last_name: 'Tabbaa',gender: 'M')
+nadia = Person.create(first_name: 'Nadia',last_name: 'Tabbaa',gender: 'F')
+mans = Person.create(first_name: 'Mansour',last_name: 'Tabbaa',gender: 'M', father: hashem, mother: zahra)
+tq = Person.create(first_name: 'Tawfiq',last_name: 'Tabbaa',gender: 'M', father: mans, mother: nadia)
+afaf = Person.create(first_name: 'Afaf',last_name: 'Tabbaa',gender: 'F', father: hashem, mother: zahra)
 ar = Person.create(first_name: 'AR',last_name: 'Pharaon',gender: 'M')
 bassam = Person.create(first_name: 'Bassam',last_name: 'Pharaon',gender: 'M', father: ar, mother: afaf)
 dina = Person.create(first_name: 'Dina',last_name: 'Tash',gender: 'F')
@@ -21,7 +26,11 @@ gaith = Person.create(first_name: 'Gaith',last_name: 'Shubailat',gender: 'M', fa
 union1 = Union.create(date: Date.new(1969), location: 'Amman, Jordan', husband: bassam, wife: dina)
 union2 = Union.create(date: Date.parse('2006-05-19'), location: 'Amman, Jordan', husband: zeid, wife: nisreen)
 union3 = Union.create(date: Date.new(1940), location: 'Amman, Jordan', husband: ar, wife: afaf)
+union4 = Union.create(date: Date.new(1940), location: 'Amman, Jordan', husband: mans, wife: nadia)
+union5 = Union.create(date: Date.new(1940), location: 'Amman, Jordan', husband: hashem, wife: zahra)
 
 union1.people << [bassam, dina, nisreen, yasmin]
 union2.people << [nisreen, zeid, gaith]
 union3.people << [bassam, afaf, ar]
+union4.people << [mans, nadia, tq]
+union5.people << [hashem, zahra, mans, afaf]
