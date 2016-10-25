@@ -1,6 +1,8 @@
 module RelationshipTo
   def relationship_to(target, stack=[], matches=[])
 
+    stack.push(self) if stack.empty?
+
     # Case: Relationship to self
     if self.id == target.id
       return "#{target.first_name} is #{self.first_name}"
@@ -8,26 +10,30 @@ module RelationshipTo
 
     # Iterate on self's root relationships
     root_relationships.each do |relationship|
-
+      next if stack.include?(relationship.target)
       # Case: A primitive type relationship exists
       if relationship.target.id == target.id  # probably need && first_order? true
         connection = Relationship.find_by(root_id: self.id, target_id: target.id)
         return "#{target.first_name} is #{self.first_name}'s #{connection_name(connection)}"
       end
 
-      puts "rel #{relationship.target.first_name}"
-
       stack.push(relationship.target)
 
-      relationship.target.root_relationships.of_order(1).each do |sub|
-        # handle higher order relationships
-        if sub.target_id == target.id
-          matches << stack.dup
-        end
-        # stack[-1].relationship_to(target, stack, matches) unless stack.length == 3
+      nodes_to_visit = relationship.target.root_relationships.reject do |node|
+        node.target_id == self.id || \
+        self.root_relationships.map{|r| r.target_id }.include?(node.target_id) || \
+        stack.include?(node.target_id)
       end
-      stack.pop
 
+      nodes_to_visit.each do |node|
+        if node.target_id == target.id
+          matches << stack.dup
+        else
+        node.target.relationship_to(target, stack, matches)
+        end
+      end
+
+      stack.pop
     end
     return matches
   end
