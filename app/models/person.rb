@@ -47,13 +47,23 @@ class Person < ActiveRecord::Base
     child_in.present? ? child_in.children.reject{|child| child.id == self.id} : []
   end
 
-  def connections
+  def connections #hash
     connected_individuals = Hash.new{ |h,k| h[k] = [] }
     connected_individuals[:parents] << self.father if self.father.present?
     connected_individuals[:parents] << self.mother if self.mother.present?
     connected_individuals[:spouse] << self.spouse if self.spouse.present?
     self.children.each{|child| connected_individuals[:children] << child}
     self.siblings.each{|sibling| connected_individuals[:siblings] << sibling}
+    return connected_individuals
+  end
+
+  def connections_array
+    connected_individuals = Array.new
+    connected_individuals << self.father if self.father.present?
+    connected_individuals << self.mother if self.mother.present?
+    connected_individuals << self.spouse if self.spouse.present?
+    self.children.each{|child| connected_individuals << child}
+    self.siblings.each{|sibling| connected_individuals << sibling}
     return connected_individuals
   end
 end
