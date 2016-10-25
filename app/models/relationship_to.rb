@@ -29,7 +29,9 @@ module RelationshipTo
         if node.target_id == target.id
           matches << stack.dup
         else
-        node.target.relationship_to(target, stack, matches)
+          # stack.push(node.target)
+          node.target.relationship_to(target, stack, matches)
+          # stack.pop
         end
       end
 
