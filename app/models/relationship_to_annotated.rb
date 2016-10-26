@@ -1,5 +1,6 @@
-module RelationshipTo2
+module RelationshipToAnnotated
   def relationship_to_2(target, stack=[], matches=[], count=0)
+    # ActiveRecord::Base.logger = nil
     stack.push(self)
     puts "#{"\t" * count }self is #{self.first_name}"
     puts "#{"\t" * count }stack is #{stack.map{|p|p.first_name}}"
@@ -25,7 +26,6 @@ module RelationshipTo2
         puts "#{"\t" * count }MATCH"
         matches << stack.dup
       else
-        # stack.push(node.target)
         count += 1
         node.target.relationship_to_2(target, stack, matches, count)
         count -= 1
