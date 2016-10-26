@@ -36,7 +36,7 @@ gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 gem 'therubyracer', '~> 0.12.2'
 gem 'less-rails', '~> 2.7', '>= 2.7.1'
 gem 'devise', '~> 4.1'
-gem 'rails_admin', '~> 0.8.1'
+gem 'rails_admin', '~> 1.0'
 gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 group :development, :test do
